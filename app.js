@@ -14,7 +14,9 @@ var app = express();
 //Set up mongoose connection
 
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://127.0.0.1:27017/local_library?directConnection=true&serverSelectionTimeoutMS=2000';
+var dev_db_url = 'mongodb+srv://user:user12345678@cluster0.wt7he.mongodb.net/local_library?retryWrites=true';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
+
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
